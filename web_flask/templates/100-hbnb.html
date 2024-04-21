@@ -5,11 +5,12 @@
     <link rel="stylesheet" href="../static/styles/6-filters.css">
     <link rel="stylesheet" href="../static/styles/3-header.css">
     <link rel="stylesheet" href="../static/styles/3-footer.css">
+    <link rel="stylesheet" href="../static/styles/8-places.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Airbnb Clone</title>
-    <link rel="shortcut icon" href="../static/images/icon_hbnb.png" type="image/x-icon">
+    <link rel="shortcut icon" href="images/icon_hbnb.png" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -32,6 +33,7 @@
                 {% endfor %}
                 </ul>
             </div>
+
             <div class="amenities">
                 <h3>Amenities</h3>
                 <h4>&nbsp;</h4>
@@ -44,6 +46,39 @@
             <button>
                 Search
             </button>
+        </section>
+
+        <section class="places">
+            <h1>Places</h1>
+
+            <div class="places_container">
+            {% for place in models.places | sort(attribute='name') %}
+                <article>
+                    <h2>{{ place.name }}</h2>
+                    <div class="price_by_night">
+                        ${{ place.price_by_night }}
+                    </div>
+                    <div class="information">
+                        <div class="max_guest">
+                            {{ place.max_guest }}
+                        </div>
+                        <div class="number_rooms">
+                            {{ place.number_rooms }}
+                        </div>
+                        <div class="number_bathrooms">
+                            {{ place.number_bathrooms }}
+                        </div>
+                    </div>
+                    <div class="user">
+                        <span class="owner">Owner</span>: {{ place.user.first_name}} {{ place.user.last_name}}
+                    </div>
+                    <div class="description">
+                        {{ place.description | safe }}
+                    </div>
+                </article>
+            {% endfor %}
+            </div>
+
         </section>
     </div>
 
